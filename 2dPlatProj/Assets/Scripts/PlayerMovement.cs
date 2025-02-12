@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     float speedX = 0f;
-    float speedY = 20f;
+    float speedY = 15f;
     float speedXValue = 10f;
     float direction = 1f;
     bool isGrounded;
     public LayerMask layerMask;
     float groundCheckDistance = 1.5f;
     float coyoteTime = 0.2f;
+    bool doubleJump = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             coyoteTime = 0.2f;
+            doubleJump = true;
         }
         else
         {
@@ -64,7 +67,21 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, speedY);   
             }
-            
+            if (doubleJump == true)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, speedY);
+                doubleJump = false;
+            }
+
+        }
+        
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DeathBox"))
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }
