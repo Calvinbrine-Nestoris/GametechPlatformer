@@ -5,14 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerControllerSettings settings;
     Rigidbody2D rb;
     float speedX = 0f;
-    float speedY = 15f;
-    float speedXValue = 10f;
     float direction = 1f;
     bool isGrounded;
-    public LayerMask layerMask;
-    float groundCheckDistance = 1.5f;
     float coyoteTime = 0.2f;
     bool doubleJump = true;
     // Start is called before the first frame update
@@ -25,12 +22,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, layerMask);
-        Debug.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, settings.groundCheckDistance, settings.layerMask);
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * settings.groundCheckDistance);
         if (hit.collider != null)
         {
             isGrounded = true;
-            coyoteTime = 0.2f;
+            coyoteTime = settings.maxCoyoteTime;
             doubleJump = true;
         }
         else
@@ -47,29 +44,29 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) == true || Input.GetKeyDown(KeyCode.A) == true)
         {
-            speedX -= speedXValue;
+            speedX -= settings.speedXValue;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) == true || Input.GetKeyDown(KeyCode.D) == true)
         {
-            speedX += speedXValue;
+            speedX += settings.speedXValue;
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow) == true || Input.GetKeyUp(KeyCode.A) == true)
         {
-            speedX += speedXValue;
+            speedX += settings.speedXValue;
         }
         if (Input.GetKeyUp(KeyCode.RightArrow) == true || Input.GetKeyUp(KeyCode.D) == true)
         {
-            speedX -= speedXValue;
+            speedX -= settings.speedXValue;
         }
         if (Input.GetKeyDown(KeyCode.Space) == true || Input.GetKeyDown(KeyCode.W) == true || Input.GetKeyDown(KeyCode.UpArrow) == true)
         {
             if (isGrounded == true || coyoteTime > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, speedY);   
+                rb.velocity = new Vector2(rb.velocity.x, settings.speedY);   
             }
             if (doubleJump == true)
             {
-                rb.velocity = new Vector2(rb.velocity.x, speedY);
+                rb.velocity = new Vector2(rb.velocity.x, settings.speedY);
                 doubleJump = false;
             }
 
