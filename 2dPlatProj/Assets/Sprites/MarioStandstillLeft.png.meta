@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 612986fd5bdecb8498182533e0a0856c
+guid: a14d663f05af495488b9796b3826e9f6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,91 +95,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: MarioRunningSpriteSheet_0
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 1
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f238c1fc40625c249a0fe0eb3cb1e5fa
-      internalID: -1779512663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MarioRunningSpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 18
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7cad1d939f893240a7411a06e4c6280
-      internalID: -928531077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MarioRunningSpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 0
-        width: 18
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f55dcb0e995832348abec5c569bda536
-      internalID: -77199244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MarioRunningSpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 1
-        width: 16
-        height: 35
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 529e51134ef2169488812549ab6dcde8
-      internalID: 930441231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -190,12 +106,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      MarioRunningSpriteSheet_0: -1779512663
-      MarioRunningSpriteSheet_1: -121748236
-      MarioRunningSpriteSheet_2: -928531077
-      MarioRunningSpriteSheet_3: -77199244
-      MarioRunningSpriteSheet_4: 930441231
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

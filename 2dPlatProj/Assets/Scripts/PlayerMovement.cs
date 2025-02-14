@@ -7,15 +7,21 @@ public class PlayerMovement : MonoBehaviour
 {
     public PlayerControllerSettings settings;
     Rigidbody2D rb;
+    public Animator runAnimation;
+    public SpriteRenderer facing;
+    public Sprite[] spriteArray;
     float speedX = 0f;
     float direction = 1f;
     bool isGrounded;
     float coyoteTime = 0.2f;
     bool doubleJump = true;
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        runAnimation = GetComponent<Animator>();
+        facing = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -37,6 +43,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        direction = Input.GetAxis("Horizontal");
+        if (direction > 0f)
+        {
+            facing.sprite = spriteArray[0];
+        }
+        if (direction < 0f)
+        {
+            facing.sprite = spriteArray[1];
+        }
         rb.velocity = new Vector2(speedX, rb.velocity.y);
         if (!isGrounded)
         {
@@ -45,10 +60,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) == true || Input.GetKeyDown(KeyCode.A) == true)
         {
             speedX -= settings.speedXValue;
+            facing.sprite = spriteArray[3];
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) == true || Input.GetKeyDown(KeyCode.D) == true)
         {
             speedX += settings.speedXValue;
+            facing.sprite = spriteArray[2];
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow) == true || Input.GetKeyUp(KeyCode.A) == true)
         {
