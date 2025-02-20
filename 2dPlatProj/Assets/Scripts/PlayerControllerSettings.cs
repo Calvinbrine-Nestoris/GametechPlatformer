@@ -8,7 +8,7 @@ public class PlayerControllerSettings : ScriptableObject
     public float speedXValue = 10f;
     public float speedY = 15f;
     public float groundCheckDistance = 1.5f;
-    public float maxCoyoteTime = 0.2f;
+    public float maxCoyoteTime = 0.3f;
     public LayerMask layerMask;
 
 }

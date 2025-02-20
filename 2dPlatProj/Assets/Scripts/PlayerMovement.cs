@@ -9,11 +9,10 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     public Animator runAnimation;
     public SpriteRenderer facing;
-    public Sprite[] spriteArray;
     float speedX = 0f;
     float direction = 1f;
     bool isGrounded;
-    float coyoteTime = 0.2f;
+    float coyoteTime = 0.3f;
     bool doubleJump = true;
     
     // Start is called before the first frame update
@@ -46,11 +45,11 @@ public class PlayerMovement : MonoBehaviour
         direction = Input.GetAxis("Horizontal");
         if (direction > 0f)
         {
-            facing.sprite = spriteArray[0];
+            facing.flipX = false;
         }
         if (direction < 0f)
         {
-            facing.sprite = spriteArray[1];
+            facing.flipX = true;
         }
         rb.velocity = new Vector2(speedX, rb.velocity.y);
         if (!isGrounded)
@@ -60,12 +59,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) == true || Input.GetKeyDown(KeyCode.A) == true)
         {
             speedX -= settings.speedXValue;
-            facing.sprite = spriteArray[3];
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) == true || Input.GetKeyDown(KeyCode.D) == true)
         {
             speedX += settings.speedXValue;
-            facing.sprite = spriteArray[2];
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow) == true || Input.GetKeyUp(KeyCode.A) == true)
         {
@@ -88,8 +85,9 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        
-        
+        runAnimation.SetFloat("speedX", Mathf.Abs(speedX));
+        runAnimation.SetBool("onGround", isGrounded);
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
