@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     float coyoteTime = 0.3f;
     bool doubleJump = true;
+    int score = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -83,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, settings.speedY);
                 doubleJump = false;
             }
-
         }
         runAnimation.SetFloat("speedX", Mathf.Abs(speedX));
         runAnimation.SetBool("onGround", isGrounded);
@@ -94,6 +94,10 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("DeathBox"))
         {
             SceneManager.LoadScene("SampleScene");
+        }
+        if (collision.CompareTag("Coin"))
+        {
+            score += 1;
         }
     }
 }
