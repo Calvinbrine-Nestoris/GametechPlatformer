@@ -15,7 +15,9 @@ public class PlayerMovement : MonoBehaviour
     float coyoteTime = 0.3f;
     bool doubleJump = true;
     public static int score = 0;
-    
+    float platMovement;
+    string scene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isGrounded = false;
-        }   
+        }
     }
     void Update()
     {
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         {
             facing.flipX = true;
         }
-        rb.velocity = new Vector2(speedX, rb.velocity.y);
+        rb.velocity = new Vector2(speedX + platMovement, rb.velocity.y);
         if (!isGrounded)
         {
             coyoteTime -= Time.deltaTime;
@@ -77,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrounded == true || coyoteTime > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, settings.speedY);   
+                rb.velocity = new Vector2(rb.velocity.x, settings.speedY);
             }
             else if (doubleJump == true)
             {
@@ -94,12 +96,42 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("DeathBox"))
         {
             score = 0;
-            SceneManager.LoadScene("SampleScene");
+            scene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(scene);
         }
         if (collision.CompareTag("Coin"))
         {
             score += 1;
             Destroy(collision.gameObject);
+        }
+        if (collision.CompareTag("Flagpole"))
+        {
+            if (SceneManager.GetActiveScene().name == "Level1")
+            {
+                SceneManager.LoadScene("Level2");
+            }
+            else if (SceneManager.GetActiveScene().name == "Level2")
+            {
+                SceneManager.LoadScene("Level3");
+            }
+            else if (SceneManager.GetActiveScene().name == "Level3")
+            {
+                SceneManager.LoadScene("EndScreen");
+            }
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            platMovement = MovingPlatform.platSpeed;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            platMovement = 0;
         }
     }
 }

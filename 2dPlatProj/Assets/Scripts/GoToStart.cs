@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GoToGame : MonoBehaviour
+public class GoToStart : MonoBehaviour
 {
     public Button startButton;
     // Start is called before the first frame update
@@ -21,6 +21,6 @@ public class GoToGame : MonoBehaviour
 
     private void TaskOnClick()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("TitleScreen");
     }
 }
